@@ -1,5 +1,5 @@
 <?php
-namespace dench\language\components;
+namespace dench\language;
 
 use Yii;
 use yii\web\UrlManager;

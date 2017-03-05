@@ -1,5 +1,5 @@
 <?php
-namespace dench\language\components;
+namespace dench\language;
 
 use dench\language\models\Language;
 use yii\web\Request;
