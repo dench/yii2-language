@@ -1,0 +1,26 @@
+{
+    "name": "dench/yii2-language",
+    "description": "Language",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","language"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Dench",
+            "email": "dench@i.ua"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/dench/yii2-language/issues",
+        "source": "https://github.com/dench/yii2-language"
+    },
+    "require": {
+        "yiisoft/yii2": "*",
+        "omgdef/yii2-multilingual-behavior": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "dench\\language\\": ""
+        }
+    }
+}
