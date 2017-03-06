@@ -14,7 +14,7 @@ use yii\helpers\Url;
 
 echo '<div class="lang-change">';
 foreach (Language::nameList() as $key => $value) {
-    echo Html::a($value, Url::to(['lang' => $key]), (Yii::$app->language == $key ? ['class' => 'active']: false));
+    echo Html::a($value, Url::to(['', 'lang' => $key]), (Yii::$app->language == $key ? ['class' => 'active']: false));
 }
 echo '</div>';
 
