@@ -1,7 +1,7 @@
 <?php
 namespace dench\language\behaviors;
 
-use dench\models\Language;
+use dench\language\models\Language;
 use omgdef\multilingual\MultilingualBehavior;
 use yii\helpers\ArrayHelper;
 
