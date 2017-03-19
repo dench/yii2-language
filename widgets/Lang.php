@@ -74,7 +74,7 @@ class Lang extends Widget
     {
         $options = [];
         $linkOptions = [];
-        $url = Url::to(['', 'lang' => $key]);
+        $url = Url::current(['lang' => $key]);
 
         if (Yii::$app->language == $key) {
             Html::addCssClass($options, 'active');
