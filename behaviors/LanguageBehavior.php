@@ -39,23 +39,16 @@ class LanguageBehavior extends MultilingualBehavior
 
         if (!$this->attributes) {
 
-            $rules = ArrayHelper::getColumn($owner->rules(), 0);
-            
+            $rules = $owner->rules();
+
             $attributes = [];
 
             foreach ($rules as $rule) {
-                if (is_array($rule)) {
-                    foreach ($rule as $r) {
-                        if (!strpos($r, '_ids') && !strpos($r, '_from') && !strpos($r, '_to')) {
-                            $attributes[$r] = $r;
-                        }
-                    }
-                } else {
-                    if (!strpos($rule, '_ids') && !strpos($rule, '_from') && !strpos($rule, '_to')) {
-                        $attributes[$rule] = $rule;
+                if (isset($rule[1]) && in_array($rule[1], ['string', 'safe'])) {
+                    foreach ($rule[0] as $r) {
+                        $attributes[$r] = $r;
                     }
                 }
-
             }
 
             foreach ($owner->attributes as $k => $v) {
