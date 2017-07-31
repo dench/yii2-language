@@ -16,7 +16,8 @@
     },
     "require": {
         "yiisoft/yii2": "*",
-        "omgdef/yii2-multilingual-behavior": "*"
+        "omgdef/yii2-multilingual-behavior": "*",
+        "dench/yii2-sortable": "@dev"
     },
     "autoload": {
         "psr-4": {

@@ -5,13 +5,15 @@ namespace dench\language\models;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use dench\sortable\behaviors\SortableBehavior;
 
 /**
  * This is the model class for table "language".
  *
  * @property string $id
  * @property string $name
- * @property integer $enabled
+ * @property integer $position
+ * @property boolean $enabled
  */
 class Language extends ActiveRecord
 {
@@ -34,11 +36,22 @@ class Language extends ActiveRecord
     /**
      * @inheritdoc
      */
+    public function behaviors()
+    {
+        return [
+            SortableBehavior::className(),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
             [['id', 'name'], 'required'],
             [['enabled'], 'boolean'],
+            [['position'], 'integer'],
             [['id'], 'string', 'max' => 3],
             [['name'], 'string', 'max' => 31],
         ];
@@ -53,6 +66,7 @@ class Language extends ActiveRecord
             'id' => 'ID',
             'name' => Yii::t('app', 'Name'),
             'enabled' => Yii::t('app', 'Enabled'),
+            'position' => Yii::t('app', 'Position'),
         ];
     }
 
