@@ -2,16 +2,16 @@
 /**
  * Created by PhpStorm.
  * User: dench
- * Date: 02.11.16
- * Time: 11:40
+ * Date: 01.07.17
+ * Time: 13:45
  */
 
 namespace dench\language\widgets;
 
 use Yii;
 use dench\language\models\Language;
-use yii\bootstrap\Widget;
 use yii\base\InvalidConfigException;
+use yii\base\Widget;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -23,6 +23,22 @@ class Lang extends Widget
 
     public $langs = [];
 
+    public $tag = "ul";
+
+    public $options = [
+        'class' => 'navbar-nav',
+    ];
+
+    public $itemTag = "li";
+
+    public $itemOptions = [
+        'class' => 'nav-item',
+    ];
+
+    public $linkOptions = [
+        'class' => 'nav-link',
+    ];
+
     /**
      * Initializes the widget.
      */
@@ -32,12 +48,10 @@ class Lang extends Widget
 
         if (!isset($this->current)) {
             $this->current = Language::getCurrent();
-            //throw new InvalidConfigException("The 'current' option is required.");
         }
 
         if (!isset($this->langs)) {
             $this->langs = Language::nameList();
-            //throw new InvalidConfigException("The 'langs' option is required.");
         }
     }
 
@@ -59,9 +73,7 @@ class Lang extends Widget
             $items[] = $this->renderItem($name, $key);
         }
 
-        Html::addCssClass($this->options, 'navbar-nav');
-
-        return Html::tag('ul', implode("\n", $items), $this->options);
+        return ($this->tag) ? Html::tag($this->tag, implode("\n", $items), $this->options) : implode("\n", $items);
     }
 
     /**
@@ -72,21 +84,25 @@ class Lang extends Widget
      */
     public function renderItem($name, $key)
     {
-        $options = [];
-        $linkOptions = [];
+        $itemOptions = $this->itemOptions;
+        $linkOptions = $this->linkOptions;
+
         $url = Url::current(['lang' => $key]);
 
         if (Yii::$app->language == $key) {
-            Html::addCssClass($options, 'active');
+            if ($this->itemTag) {
+                Html::addCssClass($itemOptions, 'active');
+            } else {
+                Html::addCssClass($linkOptions, 'active');
+            }
         }
 
         if ($this->short) {
             $name = mb_substr($name, 0, 3, 'UTF-8');
         }
 
-        Html::addCssClass($options, 'nav-item');
-        Html::addCssClass($linkOptions, 'nav-link');
+        $link = Html::a($name, $url, $linkOptions);
 
-        return Html::tag('li', Html::a($name, $url, $linkOptions), $options);
+        return ($this->itemTag) ? Html::tag($this->itemTag, $link, $itemOptions) : $link;
     }
 }

@@ -23,8 +23,11 @@ class Language extends ActiveRecord
 
     private static $_suffix_list;
 
-    // Переменная, для хранения текущего объекта языка
+    /**
+     * @var $current Language
+     */
     public static $current = null;
+
     /**
      * @inheritdoc
      */
