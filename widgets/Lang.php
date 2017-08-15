@@ -46,11 +46,11 @@ class Lang extends Widget
     {
         parent::init();
 
-        if (!isset($this->current)) {
+        if (empty($this->current)) {
             $this->current = Language::getCurrent();
         }
 
-        if (!isset($this->langs)) {
+        if (empty($this->langs)) {
             $this->langs = Language::nameList();
         }
     }
