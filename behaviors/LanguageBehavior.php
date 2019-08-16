@@ -3,6 +3,7 @@ namespace dench\language\behaviors;
 
 use dench\language\models\Language;
 use omgdef\multilingual\MultilingualBehavior;
+use Yii;
 use yii\helpers\ArrayHelper;
 
 class LanguageBehavior extends MultilingualBehavior
@@ -27,14 +28,12 @@ class LanguageBehavior extends MultilingualBehavior
     {
         $this->languages = Language::nameList();
 
-        $ownerTableName = $owner->tableName();
-
         if (!$this->langForeignKey) {
-            $this->langForeignKey = $ownerTableName . '_id';
+            $this->langForeignKey = str_replace('*' . Yii::$app->db->tablePrefix, '', '*' . $owner->tableName()) . '_id';
         }
 
         if (!$this->tableName) {
-            $this->tableName = $ownerTableName . '_lang';
+            $this->tableName = $owner->tableName() . '_lang';
         }
 
         if (!$this->attributes) {
