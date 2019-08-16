@@ -33,7 +33,7 @@ class Language extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'language';
+        return '{{%language}}';
     }
 
     /**
@@ -42,7 +42,7 @@ class Language extends ActiveRecord
     public function behaviors()
     {
         return [
-            SortableBehavior::className(),
+            SortableBehavior::class,
         ];
     }
 
