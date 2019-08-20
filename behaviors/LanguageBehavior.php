@@ -1,10 +1,11 @@
 <?php
+
 namespace dench\language\behaviors;
 
 use dench\language\models\Language;
 use omgdef\multilingual\MultilingualBehavior;
 use Yii;
-use yii\helpers\ArrayHelper;
+use yii\base\InvalidConfigException;
 
 class LanguageBehavior extends MultilingualBehavior
 {
@@ -27,6 +28,10 @@ class LanguageBehavior extends MultilingualBehavior
     public function attach($owner)
     {
         $this->languages = Language::nameList();
+
+        if (empty($this->languages[Yii::$app->language])) {
+            throw new InvalidConfigException('Please specify the correct language in the config.');
+        }
 
         if (!$this->langForeignKey) {
             $this->langForeignKey = str_replace('*' . Yii::$app->db->tablePrefix, '', '*' . $owner->tableName()) . '_id';
