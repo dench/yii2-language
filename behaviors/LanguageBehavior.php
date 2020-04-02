@@ -2,7 +2,7 @@
 
 namespace dench\language\behaviors;
 
-use dench\language\models\Language;
+use app\models\Language;
 use omgdef\multilingual\MultilingualBehavior;
 use Yii;
 use yii\base\InvalidConfigException;

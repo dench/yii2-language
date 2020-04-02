@@ -9,7 +9,7 @@
 namespace dench\language\widgets;
 
 use Yii;
-use dench\language\models\Language;
+use app\models\Language;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
 use yii\helpers\Html;

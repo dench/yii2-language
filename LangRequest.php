@@ -1,7 +1,7 @@
 <?php
 namespace dench\language;
 
-use dench\language\models\Language;
+use app\models\Language;
 use Yii;
 use yii\helpers\Url;
 use yii\web\Request;
